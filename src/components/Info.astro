@@ -3,41 +3,42 @@
 
 <section class="section section--warm" id="info">
   <div class="section-inner">
-    <header class="section-header">
+    <header class="section-header anim-target">
       <h2 class="section-heading">基本情報</h2>
       <span class="section-heading-sub">Information</span>
+      <span class="anim-heading-line"></span>
     </header>
     <div class="section-body">
-      <dl class="info-list">
-        <div class="info-row">
+      <dl class="info-list anim-stagger-group anim-target">
+        <div class="info-row anim-stagger-item">
           <dt class="info-label">店舗名（正式）</dt>
           <dd class="info-value">柔整おがわ屋</dd>
         </div>
-        <div class="info-row">
+        <div class="info-row anim-stagger-item">
           <dt class="info-label">電話番号</dt>
           <dd class="info-value">080-1798-4253</dd>
         </div>
-        <div class="info-row">
+        <div class="info-row anim-stagger-item">
           <dt class="info-label">住所</dt>
           <dd class="info-value">鹿児島県鹿児島市城山町2-8加寿園1-北</dd>
         </div>
-        <div class="info-row">
+        <div class="info-row anim-stagger-item">
           <dt class="info-label">最寄駅・徒歩</dt>
           <dd class="info-value">朝日通電停　徒歩8分</dd>
         </div>
-        <div class="info-row">
+        <div class="info-row anim-stagger-item">
           <dt class="info-label">営業時間（平日）</dt>
           <dd class="info-value">9時〜最終受付19時</dd>
         </div>
-        <div class="info-row">
+        <div class="info-row anim-stagger-item">
           <dt class="info-label">営業時間（土日祝）</dt>
           <dd class="info-value">9時〜最終受付19時</dd>
         </div>
-        <div class="info-row">
+        <div class="info-row anim-stagger-item">
           <dt class="info-label">定休日</dt>
           <dd class="info-value">火曜日</dd>
         </div>
-        <div class="info-row">
+        <div class="info-row anim-stagger-item">
           <dt class="info-label">席数</dt>
           <dd class="info-value">1</dd>
         </div>
@@ -48,6 +49,7 @@
 
 <style lang="scss">
   @use '../styles/variables' as *;
+  @use '../styles/mixins' as *;
 
   .info-list {
     display: flex;
@@ -73,5 +75,23 @@
 
   .info-value {
     font-size: $font-size-md;
+  }
+
+  @for $i from 1 through 8 {
+    .info-row:nth-child(#{$i}) {
+      --anim-index: #{$i - 1};
+    }
+  }
+
+  @include mobile-down {
+    .info-row {
+      flex-direction: column;
+      gap: 8px;
+      padding: 16px 0;
+    }
+
+    .info-label {
+      width: auto;
+    }
   }
 </style>

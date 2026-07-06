@@ -1,3 +1,7 @@
+// ブレークポイント
+$breakpoint-tablet: 1024px;
+$breakpoint-mobile: 768px;
+
 // カラー
 $color-bg: #f7f3ed;
 $color-bg-warm: #ede6dc;
@@ -20,6 +24,15 @@ $font-size-3xl: 2.4rem;
 
 // レイアウト
 $section-padding-y: 80px;
+$section-padding-y-tablet: 60px;
+$section-padding-y-mobile: 48px;
 $section-padding-x: 4.5%;
 $inner-max-width: 1000px;
 $header-height: 72px;
+
+// アニメーション
+$menu-fade-duration: 0.4s;
+$anim-duration-base: 0.8s;
+$anim-duration-slow: 1.2s;
+$anim-ease: cubic-bezier(0.25, 0.1, 0.25, 1.0);
+$anim-ease-out: cubic-bezier(0.16, 1.0, 0.3, 1.0);

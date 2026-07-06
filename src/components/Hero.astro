@@ -1,17 +1,16 @@
 ---
 import { Image } from 'astro:assets';
-import { Icon } from 'astro-icon/components';
 
 import HeroImg from '../assets/hero.png';
 ---
 
 <section class="hero">
-  <Image class="hero-img media-img" src={HeroImg} alt="" />
+  <Image class="hero-img anim-hero-img media-img" src={HeroImg} alt="" />
 
   <div class="hero-bottom">
     <div class="hero-bottom-shade"></div>
     <div class="hero-bottom-inner">
-      <dl class="hero-hours">
+      <dl class="hero-hours anim-hero-item anim-hero-item--delay-1">
         <div class="hero-hours-row">
           <dt class="hero-hours-label">平日</dt>
           <dd class="hero-hours-value">9時〜最終受付19時</dd>
@@ -22,7 +21,7 @@ import HeroImg from '../assets/hero.png';
         </div>
       </dl>
 
-      <a href="#about" class="hero-scroll page-link">
+      <a href="#about" class="hero-scroll anim-hero-item anim-hero-item--delay-2 page-link">
         <span class="hero-scroll-text">Scroll</span>
         <span class="hero-scroll-line"></span>
       </a>
@@ -32,6 +31,7 @@ import HeroImg from '../assets/hero.png';
 
 <style lang="scss">
   @use '../styles/variables' as *;
+  @use '../styles/mixins' as *;
 
   .hero {
     display: grid;
@@ -114,5 +114,22 @@ import HeroImg from '../assets/hero.png';
     width: 1px;
     height: 32px;
     background-color: $color-text-inverse;
+  }
+
+  @include mobile-down {
+    .hero-bottom-shade {
+      height: 200px;
+    }
+
+    .hero-bottom-inner {
+      gap: 16px;
+      padding: 0 $section-padding-x 24px;
+    }
+
+    .hero-hours-row {
+      flex-direction: column;
+      gap: 4px;
+      font-size: $font-size-xs;
+    }
   }
 </style>

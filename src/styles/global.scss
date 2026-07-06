@@ -1,4 +1,6 @@
 @use 'variables' as *;
+@use 'mixins' as *;
+@use 'animations';
 
 .page-root {
   scroll-behavior: smooth;
@@ -10,6 +12,10 @@
   color: $color-text;
   background-color: $color-bg;
   line-height: 1.8;
+}
+
+.page.is-menu-open {
+  overflow: hidden;
 }
 
 .page-link {
@@ -101,10 +107,56 @@
   border: 1px solid $color-border;
   background-color: $color-bg;
   font-size: $font-size-sm;
-  transition: none;
+  transition:
+    background-color 0.3s $anim-ease,
+    border-color 0.3s $anim-ease,
+    transform 0.3s $anim-ease-out,
+    opacity 0.3s $anim-ease;
+}
+
+.actions-link:hover {
+  transform: translateY(-2px);
+  border-color: $color-accent;
 }
 
 .actions-link-icon {
   width: 20px;
   height: 20px;
+}
+
+@include tablet-down {
+  .section {
+    padding: $section-padding-y-tablet $section-padding-x;
+  }
+
+  .section-header {
+    margin-bottom: 40px;
+  }
+
+  .section-heading {
+    font-size: $font-size-xl;
+  }
+}
+
+@include mobile-down {
+  .section {
+    padding: $section-padding-y-mobile $section-padding-x;
+  }
+
+  .section-header {
+    margin-bottom: 32px;
+  }
+
+  .section-heading {
+    font-size: $font-size-lg;
+  }
+
+  .section-body {
+    font-size: $font-size-base;
+  }
+
+  .text-lead {
+    font-size: $font-size-base;
+    line-height: 1.8;
+  }
 }

@@ -18,16 +18,17 @@ const menuItems = [
 
 <section class="section" id="menu">
   <div class="section-inner">
-    <header class="section-header">
+    <header class="section-header anim-target">
       <h2 class="section-heading">メニュー</h2>
       <span class="section-heading-sub">Menu</span>
+      <span class="anim-heading-line"></span>
     </header>
     <div class="section-body">
-      <ul class="menu-list">
+      <ul class="menu-list anim-stagger-group anim-target">
         {menuItems.map((item) => (
-          <li class="menu-item">
+          <li class="menu-item anim-stagger-item">
             <div class="menu-item-img-wrap">
-              <Image class="menu-item-img media-img" src={item.image} alt="" />
+              <Image class="menu-item-img anim-menu-img media-img" src={item.image} alt="" />
             </div>
             <div class="menu-item-body">
               <p class="menu-item-name">{item.name}</p>
@@ -36,7 +37,7 @@ const menuItems = [
           </li>
         ))}
       </ul>
-      <p class="text-note menu-note">
+      <p class="text-note menu-note anim-target anim-target--delay-1">
         ※税込み<br />
         ※初回500円引き
       </p>
@@ -46,6 +47,7 @@ const menuItems = [
 
 <style lang="scss">
   @use '../styles/variables' as *;
+  @use '../styles/mixins' as *;
 
   .menu-list {
     display: flex;
@@ -94,5 +96,38 @@ const menuItems = [
 
   .menu-note {
     text-align: center;
+  }
+
+  @for $i from 1 through 5 {
+    .menu-item:nth-child(#{$i}) {
+      --anim-index: #{$i - 1};
+    }
+  }
+
+  @include tablet-down {
+    .menu-item-img-wrap {
+      width: 220px;
+      height: 165px;
+    }
+  }
+
+  @include mobile-down {
+    .menu-list {
+      gap: 24px;
+    }
+
+    .menu-item {
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .menu-item-img-wrap {
+      width: 100%;
+      height: 200px;
+    }
+
+    .menu-item-name {
+      font-size: $font-size-md;
+    }
   }
 </style>
