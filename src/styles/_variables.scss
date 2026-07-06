@@ -1,2 +1,38 @@
 // ブレークポイント
+$breakpoint-tablet: 1024px;
+$breakpoint-mobile: 768px;
 
+// カラー
+$color-bg: #f7f3ed;
+$color-bg-warm: #ede6dc;
+$color-bg-dark: #3d2b1f;
+$color-text: #3d2b1f;
+$color-text-light: #6b5a4e;
+$color-text-inverse: #ffffff;
+$color-accent: #5c6b4f;
+$color-border: #d4c8ba;
+
+// タイポグラフィ
+$font-size-xs: 0.8rem;
+$font-size-sm: 0.9rem;
+$font-size-base: 1.0rem;
+$font-size-md: 1.1rem;
+$font-size-lg: 1.3rem;
+$font-size-xl: 1.6rem;
+$font-size-2xl: 2.0rem;
+$font-size-3xl: 2.4rem;
+
+// レイアウト
+$section-padding-y: 80px;
+$section-padding-y-tablet: 60px;
+$section-padding-y-mobile: 48px;
+$section-padding-x: 4.5%;
+$inner-max-width: 1000px;
+$header-height: 72px;
+
+// アニメーション
+$menu-fade-duration: 0.4s;
+$anim-duration-base: 0.8s;
+$anim-duration-slow: 1.2s;
+$anim-ease: cubic-bezier(0.25, 0.1, 0.25, 1.0);
+$anim-ease-out: cubic-bezier(0.16, 1.0, 0.3, 1.0);

@@ -1,0 +1,224 @@
+@use 'variables' as *;
+
+@keyframes anim-scroll-line {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+    opacity: 0;
+  }
+
+  40% {
+    transform: scaleY(1);
+    transform-origin: top;
+    opacity: 1;
+  }
+
+  60% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+    opacity: 1;
+  }
+
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+    opacity: 0;
+  }
+}
+
+@keyframes anim-nav-item {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// スクロール連動
+.anim-target {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity $anim-duration-base $anim-ease-out,
+    transform $anim-duration-base $anim-ease-out;
+}
+
+.anim-target.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.anim-target--delay-1 {
+  transition-delay: 0.15s;
+}
+
+.anim-target--fade {
+  transform: none;
+}
+
+.anim-target--fade.is-visible {
+  transform: none;
+}
+
+.anim-target--zoom {
+  transform: scale(1.05);
+}
+
+.anim-target--zoom.is-visible {
+  transform: scale(1);
+}
+
+// 見出し下ライン
+.anim-heading-line {
+  display: block;
+  width: 0;
+  height: 1px;
+  margin-top: 16px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: $color-accent;
+  transition: width $anim-duration-slow $anim-ease-out 0.2s;
+}
+
+.section--dark .anim-heading-line {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.anim-target.is-visible .anim-heading-line {
+  width: 48px;
+}
+
+// スタagger
+.anim-stagger-group .anim-stagger-item {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity $anim-duration-base $anim-ease-out,
+    transform $anim-duration-base $anim-ease-out;
+  transition-delay: calc(var(--anim-index) * 0.12s);
+}
+
+.anim-stagger-group.is-visible .anim-stagger-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+// Hero ロード
+.anim-hero-img {
+  opacity: 0;
+  transform: scale(1.06);
+  transition:
+    opacity $anim-duration-slow $anim-ease-out,
+    transform 1.4s $anim-ease-out;
+}
+
+.page.is-loaded .anim-hero-img {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.anim-hero-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity $anim-duration-base $anim-ease-out,
+    transform $anim-duration-base $anim-ease-out;
+}
+
+.page.is-loaded .anim-hero-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.anim-hero-item--delay-1 {
+  transition-delay: 0.5s;
+}
+
+.anim-hero-item--delay-2 {
+  transition-delay: 0.7s;
+}
+
+.anim-hero-item--delay-3 {
+  transition-delay: 0.9s;
+}
+
+.page.is-loaded .anim-scroll-line {
+  animation: anim-scroll-line 2.0s $anim-ease infinite;
+}
+
+// メニュー画像
+.anim-menu-img {
+  transform: scale(1.08);
+  transition: transform 1.0s $anim-ease-out;
+  transition-delay: calc(var(--anim-index) * 0.12s + 0.15s);
+}
+
+.anim-stagger-group.is-visible .anim-menu-img {
+  transform: scale(1);
+}
+
+// ナビゲーション（開いた時のみ）
+.header-nav.is-open .header-nav-item {
+  opacity: 0;
+  animation: anim-nav-item 0.5s $anim-ease-out forwards;
+}
+
+.header-nav.is-open .header-nav-item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.header-nav.is-open .header-nav-item:nth-child(2) {
+  animation-delay: 0.18s;
+}
+
+.header-nav.is-open .header-nav-item:nth-child(3) {
+  animation-delay: 0.26s;
+}
+
+.header-nav.is-open .header-nav-item:nth-child(4) {
+  animation-delay: 0.34s;
+}
+
+.header-nav.is-open .header-nav-item:nth-child(5) {
+  animation-delay: 0.42s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-target,
+  .anim-stagger-group .anim-stagger-item,
+  .anim-hero-img,
+  .anim-hero-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .anim-heading-line {
+    width: 48px;
+    transition: none;
+  }
+
+  .anim-target--delay-1 {
+    transition-delay: 0s;
+  }
+
+  .page.is-loaded .anim-scroll-line {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .anim-menu-img {
+    transform: none;
+    transition: none;
+  }
+
+  .header-nav.is-open .header-nav-item {
+    opacity: 1;
+    animation: none;
+  }
+}

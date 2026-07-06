@@ -1,30 +1,85 @@
 ---
 import { Image } from 'astro:assets';
 
-import Logo from'../assets/logo.png';
+import Logo from '../assets/logo.png';
 ---
 
 <header class="header">
   <div class="header-inner">
     <h1 class="header-logo">
-      <a href="/" class="header-logo-link">
-        <Image src={ Logo } alt="柔整おがわ屋" />
+      <a href="/" class="header-logo-link page-link">
+        <Image class="header-logo-img media-img" src={Logo} alt="柔整おがわ屋" />
       </a>
     </h1>
-    <nav class="header-nav">
+    <button
+      type="button"
+      class="header-menu-btn"
+      aria-expanded="false"
+      aria-controls="header-nav"
+      aria-label="メニューを開く"
+    >
+      <span class="header-menu-line header-menu-line--top"></span>
+      <span class="header-menu-line header-menu-line--bottom"></span>
+    </button>
+    <nav class="header-nav" id="header-nav" aria-label="メインナビゲーション">
       <ul class="header-nav-list">
-        <li class="header-nav-item"><a href="" class="header-nav-link">挨拶</a></li>
-        <li class="header-nav-item"><a href="" class="header-nav-link">メニュー</a></li>
-        <li class="header-nav-item"><a href="" class="header-nav-link">基本情報</a></li>
-        <li class="header-nav-item"><a href="" class="header-nav-link">アクセス</a></li>
-        <li class="header-nav-item"><a href="" class="header-nav-link">お問い合わせ</a></li>
+        <li class="header-nav-item"><a href="#about" class="header-nav-link page-link">挨拶</a></li>
+        <li class="header-nav-item"><a href="#menu" class="header-nav-link page-link">メニュー</a></li>
+        <li class="header-nav-item"><a href="#info" class="header-nav-link page-link">基本情報</a></li>
+        <li class="header-nav-item"><a href="#access" class="header-nav-link page-link">アクセス</a></li>
+        <li class="header-nav-item"><a href="#contact" class="header-nav-link page-link">お問い合わせ</a></li>
       </ul>
     </nav>
   </div>
 </header>
 
+<script>
+  const headerMenuBtn = document.querySelector('.header-menu-btn');
+  const headerNav = document.querySelector('.header-nav');
+  const headerNavLinks = document.querySelectorAll('.header-nav-link');
+  const page = document.querySelector('.page');
+  const tabletQuery = window.matchMedia('(max-width: 1024px)');
+
+  const closeMenu = () => {
+    headerNav?.classList.remove('is-open');
+    headerMenuBtn?.setAttribute('aria-expanded', 'false');
+    headerMenuBtn?.setAttribute('aria-label', 'メニューを開く');
+    page?.classList.remove('is-menu-open');
+  };
+
+  const openMenu = () => {
+    if (!tabletQuery.matches) return;
+    headerNav?.classList.add('is-open');
+    headerMenuBtn?.setAttribute('aria-expanded', 'true');
+    headerMenuBtn?.setAttribute('aria-label', 'メニューを閉じる');
+    page?.classList.add('is-menu-open');
+  };
+
+  headerMenuBtn?.addEventListener('click', () => {
+    if (headerNav?.classList.contains('is-open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  headerNavLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      if (tabletQuery.matches) {
+        closeMenu();
+      }
+    });
+  });
+
+  tabletQuery.addEventListener('change', (event) => {
+    if (!event.matches) {
+      closeMenu();
+    }
+  });
+</script>
+
 <style lang="scss">
-  @use '../styles//variables' as *;
+  @use '../styles/variables' as *;
   @use '../styles/mixins' as *;
 
   .header {
@@ -32,6 +87,114 @@ import Logo from'../assets/logo.png';
     top: 0;
     left: 0;
     width: 100%;
-    color: #ffffff;
+    z-index: 100;
+    color: $color-text-inverse;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px $section-padding-x;
+  }
+
+  .header-logo {
+    width: 100px;
+  }
+
+  .header-menu-btn {
+    display: none;
+    position: relative;
+    z-index: 110;
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+  }
+
+  .header-menu-line {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 36px;
+    height: 2px;
+    background-color: $color-text-inverse;
+    transition: transform $menu-fade-duration ease;
+  }
+
+  .header-menu-line--top {
+    transform: translate(-50%, calc(-50% - 8px));
+  }
+
+  .header-menu-line--bottom {
+    transform: translate(-50%, calc(-50% + 8px));
+  }
+
+  .header-menu-btn[aria-expanded="true"] .header-menu-line--top {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  .header-menu-btn[aria-expanded="true"] .header-menu-line--bottom {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+  .header-nav-list {
+    display: flex;
+    gap: 28px;
+  }
+
+  .header-nav-link {
+    font-size: $font-size-sm;
+    color: $color-text-inverse;
+    letter-spacing: 0.1em;
+  }
+
+  @include tablet-down {
+    .header-menu-btn {
+      display: block;
+    }
+
+    .header-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $color-bg-dark;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity $menu-fade-duration ease, visibility $menu-fade-duration ease;
+    }
+
+    .header-nav.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .header-nav-list {
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .header-nav-link {
+      font-size: $font-size-lg;
+    }
+  }
+
+  @include mobile-down {
+    .header-logo {
+      width: 80px;
+    }
+
+    .header-inner {
+      padding: 16px $section-padding-x;
+    }
   }
 </style>
