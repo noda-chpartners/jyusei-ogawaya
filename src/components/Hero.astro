@@ -1,23 +1,118 @@
 ---
 import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
 
-import Hero from '../assets/hero.png';
+import HeroImg from '../assets/hero.png';
 ---
 
-<div class="hero">
-  <Image class="hero-img" src={ Hero } alt="" />
-</div>
+<section class="hero">
+  <Image class="hero-img media-img" src={HeroImg} alt="" />
+
+  <div class="hero-bottom">
+    <div class="hero-bottom-shade"></div>
+    <div class="hero-bottom-inner">
+      <dl class="hero-hours">
+        <div class="hero-hours-row">
+          <dt class="hero-hours-label">平日</dt>
+          <dd class="hero-hours-value">9時〜最終受付19時</dd>
+        </div>
+        <div class="hero-hours-row">
+          <dt class="hero-hours-label">土日祝</dt>
+          <dd class="hero-hours-value">9時〜最終受付19時</dd>
+        </div>
+      </dl>
+
+      <a href="#about" class="hero-scroll page-link">
+        <span class="hero-scroll-text">Scroll</span>
+        <span class="hero-scroll-line"></span>
+      </a>
+    </div>
+  </div>
+</section>
 
 <style lang="scss">
-  @use '../styles//variables' as *;
-  @use '../styles/mixins' as *;
+  @use '../styles/variables' as *;
 
   .hero {
+    display: grid;
     min-height: 100dvh;
+  }
+
+  .hero-img,
+  .hero-bottom {
+    grid-row: 1;
+    grid-column: 1;
   }
 
   .hero-img {
     width: 100%;
     height: 100dvh;
+  }
+
+  .hero-bottom {
+    display: grid;
+    z-index: 1;
+  }
+
+  .hero-bottom-shade,
+  .hero-bottom-inner {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .hero-bottom-shade {
+    align-self: end;
+    width: 100%;
+    height: 280px;
+    background: linear-gradient(to top, rgba(61, 43, 31, 0.7), transparent);
+  }
+
+  .hero-bottom-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 20px;
+    padding: 0 $section-padding-x 32px;
+    color: $color-text-inverse;
+  }
+
+  .hero-hours {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
+  }
+
+  .hero-hours-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    font-size: $font-size-sm;
+  }
+
+  .hero-hours-label {
+    font-weight: 500;
+    letter-spacing: 0.1em;
+  }
+
+  .hero-hours-value {
+    letter-spacing: 0.05em;
+  }
+
+  .hero-scroll {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-size: $font-size-xs;
+    letter-spacing: 0.2em;
+  }
+
+  .hero-scroll-line {
+    display: block;
+    width: 1px;
+    height: 32px;
+    background-color: $color-text-inverse;
   }
 </style>

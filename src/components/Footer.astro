@@ -1,26 +1,44 @@
 ---
+import { Image } from 'astro:assets';
+
+import Logo from '../assets/logo.png'
 ---
 
 <footer class="footer">
   <div class="footer-inner">
-   
+    <Image src={ Logo } alt="" />
   </div>
-  <small class="copyright">&copy; 2026 柔整おがわ屋</small>
+  <small class="footer-copyright">&copy; 2026 柔整おがわ屋</small>
 </footer>
 
 <style lang="scss">
-  @use '../styles//variables' as *;
-  @use '../styles/mixins' as *;
+  @use '../styles/variables' as *;
 
   .footer {
-    width: 100%;
-    padding: 40px 4.5%;
+    padding: 40px $section-padding-x;
+    background-color: $color-bg-dark;
+    color: $color-text-inverse;
   }
 
-  .copyright {
+  .footer-inner {
+    max-width: $inner-max-width;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .footer-name {
+    font-size: $font-size-lg;
+    letter-spacing: 0.2em;
+  }
+
+  .footer-copyright {
     display: flex;
     justify-content: center;
-    padding: 20px 0 0 0;
-    border-top: 1px solid #333;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: $font-size-xs;
+    color: rgba(255, 255, 255, 0.6);
   }
 </style>

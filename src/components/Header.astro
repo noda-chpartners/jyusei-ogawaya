@@ -1,37 +1,59 @@
 ---
 import { Image } from 'astro:assets';
 
-import Logo from'../assets/logo.png';
+import Logo from '../assets/logo.png';
 ---
 
 <header class="header">
   <div class="header-inner">
     <h1 class="header-logo">
-      <a href="/" class="header-logo-link">
-        <Image src={ Logo } alt="柔整おがわ屋" />
+      <a href="/" class="header-logo-link page-link">
+        <Image class="header-logo-img media-img" src={Logo} alt="柔整おがわ屋" />
       </a>
     </h1>
-    <nav class="header-nav">
+    <nav class="header-nav" aria-label="メインナビゲーション">
       <ul class="header-nav-list">
-        <li class="header-nav-item"><a href="" class="header-nav-link">挨拶</a></li>
-        <li class="header-nav-item"><a href="" class="header-nav-link">メニュー</a></li>
-        <li class="header-nav-item"><a href="" class="header-nav-link">基本情報</a></li>
-        <li class="header-nav-item"><a href="" class="header-nav-link">アクセス</a></li>
-        <li class="header-nav-item"><a href="" class="header-nav-link">お問い合わせ</a></li>
+        <li class="header-nav-item"><a href="#about" class="header-nav-link page-link">挨拶</a></li>
+        <li class="header-nav-item"><a href="#menu" class="header-nav-link page-link">メニュー</a></li>
+        <li class="header-nav-item"><a href="#info" class="header-nav-link page-link">基本情報</a></li>
+        <li class="header-nav-item"><a href="#access" class="header-nav-link page-link">アクセス</a></li>
+        <li class="header-nav-item"><a href="#contact" class="header-nav-link page-link">お問い合わせ</a></li>
       </ul>
     </nav>
   </div>
 </header>
 
 <style lang="scss">
-  @use '../styles//variables' as *;
-  @use '../styles/mixins' as *;
+  @use '../styles/variables' as *;
 
   .header {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    color: #ffffff;
+    z-index: 10;
+    color: $color-text-inverse;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px $section-padding-x;
+  }
+
+  .header-logo {
+    width: 100px;
+  }
+
+  .header-nav-list {
+    display: flex;
+    gap: 28px;
+  }
+
+  .header-nav-link {
+    font-size: $font-size-sm;
+    color: $color-text-inverse;
+    letter-spacing: 0.1em;
   }
 </style>

@@ -1,21 +1,110 @@
-html {
+@use 'variables' as *;
+
+.page-root {
   scroll-behavior: smooth;
 }
 
-body {
+.page {
   font-family: "Noto Serif JP", serif;
-  font-size: clamp(0.7rem, 2vw, 1rem);
+  font-size: $font-size-base;
+  color: $color-text;
+  background-color: $color-bg;
+  line-height: 1.8;
 }
 
-a {
+.page-link {
   cursor: pointer;
 }
 
-img {
+.media-img {
+  display: block;
   max-width: 100%;
   object-fit: cover;
 }
 
+// セクション共通
 .section {
-  padding: 40px 4.5%;
+  padding: $section-padding-y $section-padding-x;
+}
+
+.section-inner {
+  max-width: $inner-max-width;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-header {
+  margin-bottom: 48px;
+  text-align: center;
+}
+
+.section-heading {
+  font-size: $font-size-2xl;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+}
+
+.section-heading-sub {
+  display: block;
+  margin-top: 12px;
+  font-size: $font-size-sm;
+  color: $color-text-light;
+  letter-spacing: 0.1em;
+}
+
+.section-body {
+  font-size: $font-size-md;
+}
+
+.section--warm {
+  background-color: $color-bg-warm;
+}
+
+.section--dark {
+  background-color: $color-bg-dark;
+  color: $color-text-inverse;
+}
+
+.section--dark .section-heading {
+  color: $color-text-inverse;
+}
+
+.section--dark .section-heading-sub {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+// テキスト
+.text-lead {
+  font-size: $font-size-md;
+  line-height: 2.0;
+}
+
+.text-note {
+  margin-top: 24px;
+  font-size: $font-size-sm;
+  color: $color-text-light;
+}
+
+// アクションリンク
+.actions-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.actions-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 24px;
+  border: 1px solid $color-border;
+  background-color: $color-bg;
+  font-size: $font-size-sm;
+  transition: none;
+}
+
+.actions-link-icon {
+  width: 20px;
+  height: 20px;
 }

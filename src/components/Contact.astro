@@ -5,44 +5,55 @@ import { Icon } from 'astro-icon/components';
 import hotpepper from '../assets/hot.png';
 ---
 
-<section class="section">
+<section class="section section--dark" id="contact">
   <div class="section-inner">
-    <div class="section-title">
-      <h2 class="title">お問い合わせ</h2>
-    </div>
-    <div class="content">
-      <div class="actions">
-        <ul class="actions-list">
-          <li class="actions-item">
-            <a href="tel:08017984253" class="actions-link">
-              <Icon name="mdi:telephone" />
-              <span>080-1798-4253</span>
-            </a>
-          </li>
-          <li class="actions-item">
-            <a href="" class="actions-link">
-              <Icon class="actions-icon" name="simple-icons:line" />
-              <span>LINE</span>
-            </a>
-          </li>
-          <li class="actions-item">
-            <a href="" class="actions-link">
-              <Icon class="actions-icon" name="simple-icons:instagram" />
-              <span>Instagram</span>
-            </a>
-          </li>
-          <li class="actions-item">
-            <a href="" class="actions-link">
-              <Image class="actions-img" src={ hotpepper } alt="" />
-            </a>
-          </li>
-        </ul>
-      </div>
+    <header class="section-header">
+      <h2 class="section-heading">お問い合わせ</h2>
+      <span class="section-heading-sub">Contact</span>
+    </header>
+    <div class="section-body">
+      <ul class="actions-list">
+        <li class="actions-item">
+          <a href="tel:08017984253" class="actions-link contact-link page-link">
+            <Icon class="actions-link-icon" name="mdi:telephone" />
+            <span class="actions-link-text">080-1798-4253</span>
+          </a>
+        </li>
+        <li class="actions-item">
+          <a href="" class="actions-link contact-link page-link">
+            <Icon class="actions-link-icon" name="simple-icons:line" />
+            <span class="actions-link-text">LINE</span>
+          </a>
+        </li>
+        <li class="actions-item">
+          <a href="" class="actions-link contact-link page-link">
+            <Icon class="actions-link-icon" name="simple-icons:instagram" />
+            <span class="actions-link-text">Instagram</span>
+          </a>
+        </li>
+        <li class="actions-item">
+          <a href="" class="actions-link contact-link page-link">
+            <Image class="actions-link-img media-img" src={hotpepper} alt="ホットペッパービューティー" />
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
 </section>
 
 <style lang="scss">
-  @use '../styles//variables' as *;
-  @use '../styles/mixins' as *;
+  @use '../styles/variables' as *;
+
+  .contact-link {
+    border-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: $color-text-inverse;
+    justify-content: center;
+    min-height: 60px;
+  }
+
+  .contact-link .actions-link-img {
+    height: 20px;
+    width: auto;
+  }
 </style>

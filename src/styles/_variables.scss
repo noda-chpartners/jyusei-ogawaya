@@ -1,2 +1,25 @@
-// ブレークポイント
+// カラー
+$color-bg: #f7f3ed;
+$color-bg-warm: #ede6dc;
+$color-bg-dark: #3d2b1f;
+$color-text: #3d2b1f;
+$color-text-light: #6b5a4e;
+$color-text-inverse: #ffffff;
+$color-accent: #5c6b4f;
+$color-border: #d4c8ba;
 
+// タイポグラフィ
+$font-size-xs: 0.8rem;
+$font-size-sm: 0.9rem;
+$font-size-base: 1.0rem;
+$font-size-md: 1.1rem;
+$font-size-lg: 1.3rem;
+$font-size-xl: 1.6rem;
+$font-size-2xl: 2.0rem;
+$font-size-3xl: 2.4rem;
+
+// レイアウト
+$section-padding-y: 80px;
+$section-padding-x: 4.5%;
+$inner-max-width: 1000px;
+$header-height: 72px;

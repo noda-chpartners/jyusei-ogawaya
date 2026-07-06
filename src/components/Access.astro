@@ -1,22 +1,39 @@
 ---
 ---
 
-<section class="section">
+<section class="section" id="access">
   <div class="section-inner">
-    <div class="section-title">
-      <h2 class="title">アクセス</h2>
-    </div>
-    <div class="map-wrap">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3398.419568381129!2d130.5527045!3d31.5949612!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x353e5dfe3adc3dfb%3A0x8043fc148a01fa2b!2z5pW05L2T77yG44Oe44OD44K144O844K4IOaflOaVtOOBiuOBjOOCj-WxiyBKeXVzZWkgT2dhd2F5YQ!5e0!3m2!1sja!2sjp!4v1783320101412!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <header class="section-header">
+      <h2 class="section-heading">アクセス</h2>
+      <span class="section-heading-sub">Access</span>
+    </header>
+    <div class="section-body">
+      <div class="map-wrap">
+        <iframe
+          class="map-iframe"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3398.419568381129!2d130.5527045!3d31.5949612!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x353e5dfe3adc3dfb%3A0x8043fc148a01fa2b!2z5pW05L2T77yG44Oe44OD44K144O844K4IOaflOaVtOOBiuOBjOOCj-WxiyBKeXVzZWkgT2dhd2F5YQ!5e0!3m2!1sja!2sjp!4v1783320101412!5m2!1sja!2sjp"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+          title="柔整おがわ屋 地図"
+        ></iframe>
+      </div>
     </div>
   </div>
 </section>
 
 <style lang="scss">
-  @use '../styles//variables' as *;
-  @use '../styles/mixins' as *;
+  @use '../styles/variables' as *;
 
-  .section {}
-  .section-inner {}
-  .map-wrap {}
+  .map-wrap {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+  }
+
+  .map-iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
 </style>

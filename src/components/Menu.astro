@@ -1,24 +1,98 @@
 ---
+import { Image } from 'astro:assets';
+
+import item01 from '../assets/item01.png';
+import item02 from '../assets/item02.png';
+import item03 from '../assets/item04.png';
+import item04 from '../assets/item05.png';
+import item05 from '../assets/item06.png';
+
+const menuItems = [
+  { id: 1, name: 'お任せ整体70分', price: '5500円', image: item01 },
+  { id: 2, name: 'お任せ整体125分', price: '9900円', image: item02 },
+  { id: 3, name: 'お任せ整体85分', price: '6600円', image: item03 },
+  { id: 4, name: 'お任せ整体55分', price: '4400円', image: item04 },
+  { id: 5, name: 'お任せ整体110分', price: '8800円', image: item05 },
+];
 ---
 
-<section class="section">
+<section class="section" id="menu">
   <div class="section-inner">
-    <div class="section-title">
-      <h2 class="title">メニュー</h2>
-    </div>
-    <div class="content">
-      1 お任せ整体70分　5500円
-2 お任せ整体125分　9900円
-3 お任せ整体　85分　6600円
-4お任せ整体　55分　4400円
-5お任せ整体　110分　8800円
-※税込み
-※初回500円引き
+    <header class="section-header">
+      <h2 class="section-heading">メニュー</h2>
+      <span class="section-heading-sub">Menu</span>
+    </header>
+    <div class="section-body">
+      <ul class="menu-list">
+        {menuItems.map((item) => (
+          <li class="menu-item">
+            <div class="menu-item-img-wrap">
+              <Image class="menu-item-img media-img" src={item.image} alt="" />
+            </div>
+            <div class="menu-item-body">
+              <p class="menu-item-name">{item.name}</p>
+              <p class="menu-item-price">{item.price}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+      <p class="text-note menu-note">
+        ※税込み<br />
+        ※初回500円引き
+      </p>
     </div>
   </div>
 </section>
 
 <style lang="scss">
-  @use '../styles//variables' as *;
-  @use '../styles/mixins' as *;
+  @use '../styles/variables' as *;
+
+  .menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .menu-item {
+    display: flex;
+    align-items: stretch;
+    padding: 24px;
+    background-color: $color-bg-warm;
+  }
+
+  .menu-item-img-wrap {
+    flex-shrink: 0;
+    width: 280px;
+    height: 210px;
+    overflow: hidden;
+  }
+
+  .menu-item-img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .menu-item-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    text-align: center;
+  }
+
+  .menu-item-name {
+    font-size: $font-size-lg;
+    letter-spacing: 0.1em;
+  }
+
+  .menu-item-price {
+    font-size: $font-size-md;
+    color: $color-accent;
+  }
+
+  .menu-note {
+    text-align: center;
+  }
 </style>
