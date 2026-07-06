@@ -1,0 +1,48 @@
+---
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+
+import hotpepper from '../assets/hot.png';
+---
+
+<section class="section">
+  <div class="section-inner">
+    <div class="section-title">
+      <h2 class="title">お問い合わせ</h2>
+    </div>
+    <div class="content">
+      <div class="actions">
+        <ul class="actions-list">
+          <li class="actions-item">
+            <a href="tel:08017984253" class="actions-link">
+              <Icon name="mdi:telephone" />
+              <span>080-1798-4253</span>
+            </a>
+          </li>
+          <li class="actions-item">
+            <a href="" class="actions-link">
+              <Icon class="actions-icon" name="simple-icons:line" />
+              <span>LINE</span>
+            </a>
+          </li>
+          <li class="actions-item">
+            <a href="" class="actions-link">
+              <Icon class="actions-icon" name="simple-icons:instagram" />
+              <span>Instagram</span>
+            </a>
+          </li>
+          <li class="actions-item">
+            <a href="" class="actions-link">
+              <Image class="actions-img" src={ hotpepper } alt="" />
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  @use '../styles//variables' as *;
+  @use '../styles/mixins' as *;
+</style>

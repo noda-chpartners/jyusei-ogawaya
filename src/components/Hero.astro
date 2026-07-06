@@ -1,0 +1,23 @@
+---
+import { Image } from 'astro:assets';
+
+import Hero from '../assets/hero.png';
+---
+
+<div class="hero">
+  <Image class="hero-img" src={ Hero } alt="" />
+</div>
+
+<style lang="scss">
+  @use '../styles//variables' as *;
+  @use '../styles/mixins' as *;
+
+  .hero {
+    min-height: 100dvh;
+  }
+
+  .hero-img {
+    width: 100%;
+    height: 100dvh;
+  }
+</style>
