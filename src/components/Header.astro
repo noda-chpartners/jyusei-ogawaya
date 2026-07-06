@@ -1,11 +1,14 @@
 ---
+import { Image } from 'astro:assets';
+
+import Logo from'../assets/logo.png';
 ---
 
 <header class="header">
   <div class="header-inner">
     <h1 class="header-logo">
       <a href="/" class="header-logo-link">
-        柔整おがわ屋
+        <Image src={ Logo } alt="柔整おがわ屋" />
       </a>
     </h1>
     <nav class="header-nav">
