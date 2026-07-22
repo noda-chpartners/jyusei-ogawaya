@@ -4,18 +4,102 @@ import '../styles/global.scss';
 
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  noindex?: boolean;
+}
+
+const siteName = '柔整おがわ屋';
+const defaultDescription =
+  '鹿児島市城山町の完全お任せ型整体サロン。国家資格を持つ施術者が、肩こり・腰痛・疲労・姿勢の乱れに丁寧にアプローチ。和モダンな空間で心と身体を整えます。';
+
+const {
+  title = `${siteName}｜鹿児島市城山町の整体サロン`,
+  description = defaultDescription,
+  ogImage = '/ogp.png',
+  noindex = false,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL(ogImage, Astro.site);
+const robots = noindex ? 'noindex, nofollow' : 'index, follow';
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'HealthAndBeautyBusiness',
+  name: siteName,
+  description: defaultDescription,
+  url: Astro.site?.href,
+  image: ogImageURL.href,
+  telephone: '080-1798-4253',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '城山町2-8加寿園1-北',
+    addressLocality: '鹿児島市',
+    addressRegion: '鹿児島県',
+    addressCountry: 'JP',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 31.5949612,
+    longitude: 130.5527045,
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      opens: '09:00',
+      closes: '19:00',
+    },
+  ],
+  sameAs: [
+    'https://www.instagram.com/ogawaya03',
+    'https://lin.ee/Q30TzXy',
+    'https://beauty.hotpepper.jp/kr/slnH000289424/',
+  ],
+};
 ---
 
 <html lang="ja" class="page-root">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
-    <title>柔整おがわ屋</title>
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="google-site-verification" content="W6X3cwCqNwAUejsnK3WonJ1538dIruj4tj0PKa2gu5U" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={robots} />
+    <link rel="canonical" href={canonicalURL.href} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ja_JP" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL.href} />
+    <meta property="og:image" content={ogImageURL.href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="628" />
+    <meta property="og:image:alt" content={siteName} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL.href} />
+
+    <meta name="theme-color" content="#f7f3ed" />
+    <link rel="icon" href="/favicon.ico" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&display=swap" rel="stylesheet" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
   <body class="page">
     <Header />
